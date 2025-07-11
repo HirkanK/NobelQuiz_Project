@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quiz Result</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+   * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.result-container {
+  background: white;
+  padding: 2.5rem;
+  max-width: 500px;
+  width: 90%;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #ff6a00;
+  margin-bottom: 2rem;
+}
+
+.score-box {
+  margin-bottom: 2rem;
+}
+
+.score {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #27ae60;
+  margin: 0.5rem 0;
+}
+
+.feedback {
+  color: #555;
+  font-style: italic;
+}
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.summary-item {
+  background: #f5f7fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  flex: 1;
+  min-width: 120px;
+}
+
+.summary-item h3 {
+  font-size: 1rem;
+  color: #ff6a00;
+  margin-bottom: 0.5rem;
+}
+
+.actions button {
+  background-color: #ff6a00;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 0.5rem;
+  transition: background 0.3s;
+}
+
+.actions button:hover {
+  background-color: #ee0979;
+}
+
+  </style>
+</head>
+<body>
+  <div class="result-container">
+    <h1>Quiz Completed!</h1>
+    <div class="score-box">
+      <h2>Your Score:</h2>
+      <div class="score" id="scoreText"></div>
+      <p class="feedback" id="feedbackText">Hold on...</p>
+    </div>
+
+    <div class="summary">
+      <div class="summary-item">
+        <h3>Correct Answers</h3>
+        <p id="correctCount">-</p>
+      </div>
+      <div class="summary-item">
+        <h3>Wrong Answers</h3>
+        <p id="wrongCount">-</p>
+      </div>
+      <div class="summary-item">
+        <h3>Time Taken</h3>
+        <p id="timeTaken">-</p>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button onclick="window.location.href='Categories.html'">Try Again</button>
+      <button onclick="window.location.href='dashboard.html'">Go to Dashboard</button>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const score = parseInt(params.get("score"));
+    const total = parseInt(params.get("total"));
+    const startTime = new Date(localStorage.getItem("quizStartTime"));
+    const endTime = new Date();
+    const timeTakenSec = Math.round((endTime - startTime) / 1000);
+    const timeDisplay = `${Math.floor(timeTakenSec / 60)}:${String(timeTakenSec % 60).padStart(2, '0')} mins`;
+
+    const wrong = total - score;
+    const percent = (score / total) * 100;
+
+    document.getElementById("scoreText").textContent = `${score} / ${total}`;
+    document.getElementById("correctCount").textContent = score;
+    document.getElementById("wrongCount").textContent = wrong;
+    document.getElementById("timeTaken").textContent = timeDisplay;
+
+    let feedback = "";
+    if (percent === 100) feedback = "Perfect score! 🎯";
+    else if (percent >= 80) feedback = "Excellent work! 🏆";
+    else if (percent >= 50) feedback = "Good effort! Keep practicing!";
+    else feedback = "Don't worry, try again! 💪";
+
+    document.getElementById("feedbackText").textContent = feedback;
+
+    // Send to backend
+    fetch("save_score.php", {
+      method: "POST",
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        student_id: 1,
+        quiz_id: 1,
+        score: score,
+        total_questions: total,
+        correct: score,
+        incorrect: wrong,
+        time_taken: timeDisplay
+      })
+    });
+
+    localStorage.removeItem("quizStartTime");
+  </script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<?php
+session_start();
+if (!isset($_SESSION['student_id']) || !isset($_SESSION['student_name'])) {
+    header("Location: Student_Login_Register.html");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .quiz-container {
+      width: 90%;
+      max-width: 600px;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .question-box { display: none; }
+    .question-box.active { display: block; }
+    .options label {
+      display: block;
+      background: #f5f7fa;
+      border: 1px solid #ddd;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .options label:hover { background: #e8efff; }
+    .options input { margin-right: 0.8rem; }
+    .quiz-controls {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .quiz-controls button {
+      background-color: #ff6a00;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 0 0.5rem;
+      transition: background 0.3s;
+    }
+    .quiz-controls button:hover { background-color: #ee0979; }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <header class="text-center mb-4">
+      <h1>Twistters!</h1>
+      <p>Answer the questions below</p>
+    </header>
+
+    <!-- Single form wrapping all questions -->
+    <form id="quizForm">
+      <!-- Question 1 -->
+      <div class="question-box active">
+        <h2>1. What is a computer network?</h2>
+        <div class="options">
+          <label><input type="radio" name="q1" value="A"> A) A device used to display information on a computer screen.</label>
+          <label><input type="radio" name="q1" value="B"> B) A collection of interconnected computers and devices that can communicate and share resources.</label>
+          <label><input type="radio" name="q1" value="C"> C) A type of software used to create documents and presentations.</label>
+          <label><input type="radio" name="q1" value="D"> D) The physical casing that protects a computer’s internal components.</label>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="question-box">
+        <h2>2. What is the correct syntax to output "Hello World" in JS?</h2>
+        <div class="options">
+          <label><input type="radio" name="q2" value="A"> A) echo("Hello World")</label>
+          <label><input type="radio" name="q2" value="B"> B) print("Hello World")</label>
+          <label><input type="radio" name="q2" value="C"> C) console.log("Hello World")</label>
+          <label><input type="radio" name="q2" value="D"> D) printf("Hello World")</label>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="question-box">
+        <h2>3. Which type of JavaScript language is_______?</h2>
+        <div class="options">
+          <label><input type="radio" name="q3" value="A"> A) Object-oriented.</label>
+          <label><input type="radio" name="q3" value="B"> B) Object-based.</label>
+          <label><input type="radio" name="q3" value="C"> C) Functional programming.</label>
+          <label><input type="radio" name="q3" value="D"> D) All of the above.</label>
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="question-box">
+        <h2>4. PHP is a _______ language?</h2>
+        <div class="options">
+          <label><input type="radio" name="q4" value="A"> A) user-side scripting.</label>
+          <label><input type="radio" name="q4" value="B"> B) client-side scripting.</label>
+          <label><input type="radio" name="q4" value="C"> C) server-side scripting.</label>
+          <label><input type="radio" name="q4" value="D"> D) Both B and C.</label>
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="question-box">
+        <h2>5. How is a code block indicated in Python?</h2>
+        <div class="options">
+          <label><input type="radio" name="q5" value="A"> A) Brackets.</label>
+          <label><input type="radio" name="q5" value="B"> B) Indentation.</label>
+          <label><input type="radio" name="q5" value="C"> C) Key.</label>
+          <label><input type="radio" name="q5" value="D"> D) None of the above.</label>
+        </div>
+      </div>
+
+      <!-- Question 6 -->
+      <div class="question-box">
+        <h2>6. Which of the following computer networks is built on the top of another network?</h2>
+        <div class="options">
+          <label><input type="radio" name="q6" value="A"> A) Overlay network.</label>
+          <label><input type="radio" name="q6" value="B"> B) Prime network.</label>
+          <label><input type="radio" name="q6" value="C"> C) Prior network.</label>
+          <label><input type="radio" name="q6" value="D"> D) Chief network.</label>
+        </div>
+      </div>
+
+      <!-- Question 7 -->
+      <div class="question-box">
+        <h2>7. What is the shortcut key to switch between worksheets in Excel?</h2>
+        <div class="options">
+          <label><input type="radio" name="q7" value="A"> A) Ctrl+Tab.</label>
+          <label><input type="radio" name="q7" value="B"> B) Ctrl+Page Up.</label>
+          <label><input type="radio" name="q7" value="C"> C) Ctrl+Page Down.</label>
+          <label><input type="radio" name="q7" value="D"> D) Alt+Tab.</label>
+        </div>
+      </div>
+
+      <!-- Question 8 -->
+      <div class="question-box">
+        <h2>8. What is the shortcut key to hide a column in Excel?</h2>
+        <div class="options">
+          <label><input type="radio" name="q8" value="A"> A) Ctrl + H.</label>
+          <label><input type="radio" name="q8" value="B"> B) Ctrl + K.</label>
+          <label><input type="radio" name="q8" value="C"> C) Ctrl + L.</label>
+          <label><input type="radio" name="q8" value="D"> D) Ctrl + 0.</label>
+        </div>
+      </div>
+
+      <!-- Question 9 -->
+      <div class="question-box">
+        <h2>9. What command is used to create a new table in SQL?</h2>
+        <div class="options">
+          <label><input type="radio" name="q9" value="A"> A) CREATE TABLE.</label>
+          <label><input type="radio" name="q9" value="B"> B) BUILD TABLE.</label>
+          <label><input type="radio" name="q9" value="C"> C) GENERATE TABLE.</label>
+          <label><input type="radio" name="q9" value="D"> D) None of the above.</label>
+        </div>
+      </div>
+
+      <!-- Question 10 -->
+      <div class="question-box">
+        <h2>10. What makes the Java platform independent?</h2>
+        <div class="options">
+          <label><input type="radio" name="q10" value="A"> A) Advanced programming language.</label>
+          <label><input type="radio" name="q10" value="B"> B) It uses bytecode for execution.</label>
+          <label><input type="radio" name="q10" value="C"> C) Class complilation.</label>
+          <label><input type="radio" name="q10" value="D"> D) All of these.</label>
+        </div>
+      </div>
+
+      <!-- Nav buttons -->
+      <div class="quiz-controls">
+        <button type="button" id="prevBtn">Previous</button>
+        <button type="button" id="nextBtn">Next</button>
+        <button type="submit" id="submitBtn" style="display:none;">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // 🔐 Violation tracking logic
+    let violations = 0;
+    const studentId = <?php echo json_encode($_SESSION['student_id']); ?>;
+  
+    window.onblur = () => {
+      violations++;
+  
+      fetch('PHP_pages/record_violation.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ student_id: studentId })
+      });
+  
+      if (violations >= 3) {
+        fetch('PHP_pages/force_submit.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ student_id: studentId })
+        }).then(() => {
+          alert('You are blocked. Admin will review.');
+          window.location.href = 'Blocked.html';
+        });
+      }
+    };
+  
+    // ✅ Quiz navigation + scoring logic
+    const correctAnswers = { q1: "C", q2: "B", q3: "B", q4: "C", q5: "B" };
+    const boxes = document.querySelectorAll('.question-box');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    let idx = 0;
+  
+    // Save quiz start time
+    if (!localStorage.getItem("quizStartTime")) {
+      localStorage.setItem("quizStartTime", new Date().toISOString());
+    }
+  
+    function render() {
+      boxes.forEach((box, i) => box.classList.toggle('active', i === idx));
+      prevBtn.style.display = idx === 0 ? 'none' : 'inline-block';
+      nextBtn.style.display = idx === boxes.length - 1 ? 'none' : 'inline-block';
+      submitBtn.style.display = idx === boxes.length - 1 ? 'inline-block' : 'none';
+    }
+  
+    prevBtn.onclick = () => { if (idx > 0) idx--; render(); };
+    nextBtn.onclick = () => { if (idx < boxes.length - 1) idx++; render(); };
+  
+    document.getElementById("quizForm").onsubmit = function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      let score = 0;
+      let total = Object.keys(correctAnswers).length;
+      for (let key in correctAnswers) {
+        if (formData.get(key) === correctAnswers[key]) score++;
+      }
+      window.location.href = `result.html?score=${score}&total=${total}`;
+    };
+  
+    render();
+  </script>
+  
+
+</body>
+</html>

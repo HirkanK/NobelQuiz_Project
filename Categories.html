@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Categories</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body{
+	position: relative;
+	height:100%;
+	width:100%;
+	font-family: 'Segoe UI', sans-serif;
+	padding: 2rem;
+	overflow-x: hidden;
+	scroll: none;
+}
+
+.bg-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('logo1.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: blur(6px);
+      z-index: -2;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+
+
+
+.nav-link a {
+  color: gold !important;
+}
+
+.nav-link a:hover {
+  color: yellow ;
+}
+
+#pillNav2 .nav-link:hover {
+    background-color: white !important;
+    color: var(--bs-secondary) !important;
+  }
+
+ #pillNav2 .nav-link {
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+
+.categories-container {
+  max-width: 1200px;
+  margin: auto;
+ 
+}
+
+header {
+  text-align: center;
+  margin-bottom: 3rem;
+  
+}
+
+header h1 {
+  font-size: 2.5rem;
+  color: #ee0979;
+  margin-bottom: 2rem;
+  
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+ 
+}
+
+.category-card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.2s ease;
+  background-color: white;
+}
+
+.category-card:hover {
+  transform: translateY(-20px);
+}
+
+.category-card h2 {
+  color: #ee0979;
+  margin-bottom: 1rem;
+  background-color: white;
+}
+
+.category-card p {
+  margin-bottom: 1.5rem;
+  color: #555;
+  
+}
+
+.category-card a {
+  background-color: #ff6a00;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+  transition: background 2s;
+ 
+}
+
+.category-card a:hover {
+  background-color: #ee0979;
+  
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="bg-image"></div>
+  <div class="overlay"></div>
+  <div class="categories-container">
+    <header>
+    <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-danger rounded-5 shadow-sm" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-secondary); --bs-nav-pills-link-active-bg: var(--bs-white);">
+      <li class="nav-item">
+        <button class="nav-link rounded-5" id="home-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="true"><a href="Home_page.html">Home</a></button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false"><a href="About_us.html">About Us</a></button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false"><a href="Student_Login_Register.html">Student Login</a></button>
+      </li>
+	  <li class="nav-item">
+        <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false"><a href="Admin_login.html">Admin Login</a></button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false"><a href="Contact_us.html">Contact Us</a></button>
+      </li>
+    </ul>
+      <h1>Choose a Quiz Category</h1>
+      <p>Select a category to begin your quiz adventure!</p>
+    </header>
+
+    <div class="category-grid">
+      <div class="category-card">
+        <h2>📘 Trade Theory</h2>
+        <p>Test your overall awareness and trivia skills.</p>
+        <a href="Quiz_page_Trade.html">Start Quiz</a>
+      </div>
+      <div class="category-card">
+        <h2>📚 Training Methodology</h2>
+        <p>Explore the past and challenge your memory.</p>
+        <a href="Quiz_page_TM.html">Start Quiz</a>
+      </div>
+      <div class="category-card">
+        <h2>📏 Maths</h2>
+        <p>Put your scientific mind to the test!</p>
+        <a href="Quiz_page_Maths.html">Start Quiz</a>
+      </div>
+      <div class="category-card">
+        <h2>📦 Reasoning</h2>
+        <p>Think logically.</p>
+        <a href="Quiz_page_Reasoning.html">Start Quiz</a>
+      </div>
+      <div class="category-card">
+        <h2>💻 Computer & General Knowledge</h2>
+        <p>Stay sharp on the latest in tech and IT.</p>
+        <a href="Quiz_page_GK.html">Start Quiz</a>
+      </div>
+	  </div>
+    </body>
+    </html>

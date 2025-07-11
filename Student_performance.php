@@ -1,0 +1,118 @@
+<?php
+
+include('create_connection.php');
+include('session_top.php');
+session_start();
+if (!isset($_SESSION['student_id'])) {
+  header("Location: Student_Login_Register.html");
+  exit();
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Performance | NobelQuiz</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f5f8fe;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 1rem;
+  }
+  .performance-container {
+    max-width: 1000px;
+    width: 100%;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  }
+  .performance-container h1 {
+    text-align: center;
+    color: #ee0979;
+    margin-bottom: 2rem;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  .stat-card {
+    background-color: #eef3ff;
+    border-left: 6px solid #ff6a00;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  .stat-card:hover { transform: scale(1.05); }
+  .stat-card h2 {
+    color: #ee0979;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+  .stat-card p {
+    font-size: 1.6rem;
+    color: #222;
+    font-weight: bold;
+  }
+  .actions {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  .actions button {
+    background-color: #ff6a00;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    margin: 0.5rem;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .actions button:hover { background-color: #ee0979; }
+  </style>
+</head>
+<body>
+  <div class="performance-container">
+    <h1>Your Performance Report</h1>
+    <div class="stats-grid">
+      <div class="stat-card"><h2>Total Quizzes</h2><p id="total-quizzes">--</p></div>
+      <div class="stat-card"><h2>Average Score</h2><p id="avg-score">--</p></div>
+      <div class="stat-card"><h2>Accuracy</h2><p id="accuracy">--</p></div>
+      <div class="stat-card"><h2>Best Score</h2><p id="best-score">--</p></div>
+      <div class="stat-card"><h2>Total Time Spent</h2><p id="total-time">--</p></div>
+      <div class="stat-card"><h2>Last Quiz</h2><p id="last-quiz">--</p></div>
+    </div>
+    <div class="actions">
+      <button onclick="window.location.href='../Student_Dashboard.html'">Back to Dashboard</button>
+      <button onclick="window.location.href='../Categories.html'">Take Another Quiz</button>
+    </div>
+  </div>
+
+  <script>
+    fetch("Slogin_performance.php")
+      .then(res => res.json())
+      .then(data => {
+        if (data.error) {
+          alert("Session expired. Please login again.");
+          window.location.href = "login_page.html";
+        } else {
+          document.getElementById("total-quizzes").textContent = data.totalQuizzes;
+          document.getElementById("avg-score").textContent = data.averageScore;
+          document.getElementById("accuracy").textContent = data.accuracy + "%";
+          document.getElementById("best-score").textContent = data.bestScore;
+          document.getElementById("total-time").textContent = data.totalTime;
+          document.getElementById("last-quiz").textContent = data.lastQuiz;
+        }
+      });
+  </script>
+</body>
+</html>

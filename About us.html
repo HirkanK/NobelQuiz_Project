@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+  <style>
+    .component {
+  color: var(--bs-gray-800);
+  background-color: var(--bs-gray-100);
+  border: 1px solid var(--bs-gray-200);
+  border-radius: .25rem;
+}
+
+
+.component-header {
+  color: var(--bs-purple);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll:disabled;
+}
+
+.nav-link a {
+  color: gold !important;
+}
+
+.nav-link a:hover {
+  color: yellow ;
+}
+
+#pillNav2 .nav-link:hover {
+    background-color: white !important;
+    color: var(--bs-secondary) !important;
+  }
+
+ #pillNav2 .nav-link {
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f4f8;
+  color: #333;
+  line-height: 1.6;
+  overflow: hidden;
+  height: 100%;
+  
+}
+
+header {
+  background: linear-gradient(to right, #ff6a00, #ee0979);
+  color: white;
+  padding: 1rem 1rem;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+<!-- .team { -->
+  <!-- display: flex; -->
+  <!-- justify-content: center; -->
+  <!-- gap: 2rem; -->
+  <!-- flex-wrap: wrap; -->
+  <!-- padding: 2rem 1rem; -->
+<!-- } -->
+
+<!-- .team { -->
+  <!-- display: flex; -->
+  <!-- justify-content: center; -->
+  <!-- align-items: center; -->
+  <!-- gap: 2rem; -->
+  <!-- flex-wrap: wrap; -->
+  <!-- padding: 2rem 1rem; -->
+<!-- } -->
+
+.team {
+  display: flex;
+  justify-content: center;
+  align-items: stretch; /* make all cards equal height */
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 2rem 1rem;
+}
+
+<!-- .card { -->
+  <!-- background: white; -->
+  <!-- border-radius: 7px; -->
+  <!-- padding: 1.5rem; -->
+  <!-- text-align: center; -->
+  <!-- box-shadow: 0 4px 10px rgba(0,0,0,0.1); -->
+  <!-- max-width: 300px; -->
+  <!-- transition: transform 0.3s ease; -->
+<!-- } -->
+
+.card {
+  background: white;
+  border-radius: 7px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-width: 300px;
+  min-height: 380px; /* ✅ Force equal height */
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  transition: transform 0.3s ease;
+  flex: 1 1 300px;
+  align-items: center;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+<!-- .card img { -->
+  <!-- width: 120px; -->
+  <!-- border-radius: 50%; -->
+  <!-- margin-bottom: 1rem; -->
+<!-- } -->
+
+.card img {
+  width: 120px;
+  height: 150px; /* Add this for oval shape */
+  border-radius: 70% / 50%; /* Oval shape */
+  object-fit: cover; /* Ensures the image covers the shape */
+  margin-bottom: 1rem;
+}
+.card h4 {
+  color: #48d9fd;
+  margin: 0.5rem 0;
+}
+
+footer {
+  background-color: #222;
+  color: #ccc;
+  text-align: center;
+  padding: 0rem;
+  margin-top: -1rem;
+}
+
+
+  </style>
+
+
+
+
+</head>
+<body>
+  <header>
+    <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-danger rounded-5 shadow-sm" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-secondary); --bs-nav-pills-link-active-bg: var(--bs-white);">
+      <li class="nav-item">
+        <button class="nav-link rounded-5" id="home-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="true"><a href="Home_page.html">Home</a></button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false"><a href="Categories.html">Categories</a></button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false"><a href="Login_Registration.html">Profile</a></button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="button" role="tab" aria-selected="false"><a href="Contact_us.html">Contact Us</a></button>
+      </li>
+    </ul>
+    <h1>About Us</h1>
+    <p>Meet the minds behind the quiz magic!</p>
+  </header>
+
+  <section class="team">
+    <div class="card">
+      <img src="Hirkan.jpeg" alt="Team Member">
+      <h4>🌿 Hirkan Kushram</h4>
+      <p>Founder & Quiz Master</p>
+      <p>Loves crafting challenging questions and building brain games.</p>
+    </div>
+    <div class="card">
+      <img src="Pinki.jpeg" alt="Team Member">
+      <h4>🌿 Pinki Morya</h4>
+      <p>Founder & Website Designer</p>
+      <p>Designs sleek, intuitive quiz interfaces and visuals.</p>
+    </div>
+    <div class="card">
+      <img src="Sholi.jpeg" alt="Team Member">
+      <h4>🌿 Sholi Devi</h4>
+      <p>Founder & Developer</p>
+      <p>Turns creative ideas into functional quiz experiences.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 NobelQuiz. All rights reserved.</p>
+  </footer>
+</body>
+</html>
